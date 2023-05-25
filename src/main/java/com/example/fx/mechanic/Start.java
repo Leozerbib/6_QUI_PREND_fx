@@ -92,8 +92,6 @@ public class Start {
     }
 
     public static void GameLogic() {
-        Random random = new Random();
-        // Jouer au  jeu
         init();
         while (joueurs.get(joueurs.size() - 1).size() != 0) {
             game();

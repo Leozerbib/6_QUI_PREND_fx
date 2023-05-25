@@ -2,6 +2,7 @@ package com.example.fx.Cardcontroller;
 
 import com.example.fx.joueurs.joueurs;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -66,11 +68,20 @@ public class CardController {
         carteContainer.setAlignment(Pos.CENTER);
         StackPane card = new StackPane();
         card.setAlignment(Pos.CENTER);
+        card.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("mouse click detected! " + event.getSource() + " "+ label + " " + label2);
+            };
+        });
         carteContainer.getChildren().addAll(label,label2);
         card.getChildren().addAll(carte,carteContainer);
 
 
         mainJoueur.getChildren().add(card);
+    }
+    public void changecart(){
+
     }
 
 

@@ -23,29 +23,14 @@ public class Card {
     private int NbrTaureau;
     private String Img;
     private static Parent root;
-    @FXML
-    private static Label numberLU;
-    @FXML
-    private static Label numberRU;
-    @FXML
-    private static Label numberLD;
-    @FXML
-    private static Label numberRD;
-    @FXML
-    private static Label numberC;
-    @FXML
-    private static Label numTauU;
-    @FXML
-    private static Label numTauD;
     public static List<Card> cartes = new ArrayList<>();
-    public static List<Scene> cartesFx = new ArrayList<>();
     public static List<Card> AllcarteV = new ArrayList<>();
     public static List<Card> Allcarte = new ArrayList<>();
 
     public Card(int n, int num,String img) {
         Num_card = n;
         NbrTaureau = num;
-        Img = img;
+
     }
 
     public static int taureau(int Num_card, int i) {
