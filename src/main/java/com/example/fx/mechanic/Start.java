@@ -22,7 +22,8 @@ import java.util.Random;
 import static com.example.fx.joueurs.joueurs.*;
 import static com.example.fx.mechanic.Method.*;
 import static com.example.fx.mechanic.turn.game;
-import static com.example.fx.object.Card.cartes;
+import static com.example.fx.object.Card.carte;
+
 
 public class Start {
     private static Stage primaryStage;
@@ -60,7 +61,7 @@ public class Start {
     public static void start() throws IOException {
         Random random = new Random();
         // Mélanger les cartes
-        Collections.shuffle(cartes);
+        Collections.shuffle(carte);
         for (int i = 0; i < nbr_joueur; i++) {
             main = new ArrayList<>();
             mainFx = new ArrayList<>();
@@ -78,8 +79,8 @@ public class Start {
         for (int j = 0; j < 10; j++) {
             method.printLine(20);
             for (int i = 0; i <= joueurs.size() - 1; i++) {
-                joueurs.get(i).add(cartes.get(0));
-                cartes.remove(cartes.get(0));
+                joueurs.get(i).add(carte.get(0));
+                carte.remove(carte.get(0));
                 show(i);
 
             }

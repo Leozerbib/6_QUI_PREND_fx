@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.example.fx.joueurs.joueurs.joueurs;
-import static com.example.fx.object.Card.Allcarte;
-import static com.example.fx.object.Card.cartes;
+import static com.example.fx.object.Card.*;
+
 import lombok.*;
 @Getter@Setter
 
@@ -106,9 +106,9 @@ public class Method {
     public static void init(){
         Initplateau();
         for (int i =0;i<4;i++){
-            rangees[0][i]=cartes.get(0);
-            Allcarte.remove(cartes.get(0));
-            cartes.remove(cartes.get(0));
+            rangees[0][i]=carte.get(0);
+            Allcarte.remove(carte.get(0));
+            carte.remove(carte.get(0));
         }
         plateau();
     }

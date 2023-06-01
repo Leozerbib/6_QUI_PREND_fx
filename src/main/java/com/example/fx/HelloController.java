@@ -116,12 +116,12 @@ public class HelloController implements Initializable {
     private void addCard() throws IOException {
         Start.start();
         for (int i= 0 ; i<Method.nbr_joueur;i++){
-
-            CardController.start(i);
+            for (int j= 0 ; j<joueurs.joueurs.get(i).size();j++){
+            CardController.start(i,j);
         }
         System.out.println(joueurs.mainFx.size());
 
-    }
+    }}
     public void car(ActionEvent event) throws IOException{
         cardpane.getChildren().clear();
         cardpane.getChildren().addAll(joueurs.mainFx.get(0));
@@ -140,9 +140,9 @@ public class HelloController implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 }

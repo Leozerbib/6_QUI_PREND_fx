@@ -29,38 +29,37 @@ public class CardController {
 
     private static final int NUM_CARTES = 5; // Nombre de cartes dans la main
 
-    public static void start(int j) {
+    public static void start(int j,int i) {
 
         // Création de la main du joueur
         HBox mainJoueur = new HBox(10);
         mainJoueur.setStyle("-fx-background-color: White");
         mainJoueur.setPadding(new Insets(10));
-        for (int i =0 ;i<joueurs.joueurs.get(j).size();i++){
-            ajouterCarteDansMain(mainJoueur,joueurs.joueurs.get(j).get(i).getNum_card(),j,i);
-        }
+        mainJoueur.getChildren().add(joueurs.joueurs.get(j).get(i).getFx());
         // Création de la scène principale
         Parent root = mainJoueur;
         joueurs.mainFx.add(root);
+
     }
 
     // Fonction pour ajouter une carte à la main du joueur
-    private static void ajouterCarteDansMain(HBox mainJoueur, int valeur, int j, int i) {
+    public static StackPane CreateCard(int j, int i) {
         Rectangle carte = new Rectangle(100,120,Color.WHITE);
         carte.setArcWidth(10);
         carte.setArcHeight(10);
         carte.setStrokeWidth(4);
-        if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 2) {
+        if (j< 2) {
             carte.setStroke(Color.BLACK);
-        } else if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 4) {
+        } else if (j< 4) {
             carte.setStroke(Color.YELLOW);
-        } else if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 6) {
+        } else if (j < 6) {
             carte.setStroke(Color.ORANGE);
         } else {
             carte.setStroke(Color.RED);
         }
-        Label label = new Label(String.valueOf(valeur) + "\n\n");
+        Label label = new Label(String.valueOf(i) + "\n\n");
         label.setStyle("-fx-font-size: 40px;");
-        Label label2 = new Label("Taur : " + String.valueOf(joueurs.joueurs.get(j).get(i).getNbrTaureau()));
+        Label label2 = new Label("Taur : " + String.valueOf(j));
 
         label.setStyle("-fx-font-size: 20px;");
 
@@ -68,19 +67,20 @@ public class CardController {
         carteContainer.setAlignment(Pos.CENTER);
         StackPane card = new StackPane();
         card.setAlignment(Pos.CENTER);
+
+        carteContainer.getChildren().addAll(label,label2);
+        card.getChildren().addAll(carte,carteContainer);
         card.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("mouse click detected! " + event.getSource() + " "+ label + " " + label2);
             };
         });
-        carteContainer.getChildren().addAll(label,label2);
-        card.getChildren().addAll(carte,carteContainer);
+        return card;
 
-
-        mainJoueur.getChildren().add(card);
+        //mainJoueur.getChildren().add(card);
     }
-    public void changecart(){
+    public void createcard(int i,int j){
 
     }
 
