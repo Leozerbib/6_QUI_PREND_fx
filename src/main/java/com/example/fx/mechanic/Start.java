@@ -1,14 +1,19 @@
 package com.example.fx.mechanic;
 
 import com.example.fx.AI.AI;
+import com.example.fx.HelloApplication;
 import com.example.fx.method;
 import com.example.fx.object.Card;
 
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,14 +57,13 @@ public class Start {
         method.clearConsole();
     }
 
-    public static void start() {
+    public static void start() throws IOException {
         Random random = new Random();
-        Card.cart();
         // Mélanger les cartes
         Collections.shuffle(cartes);
-        // Distribuer les cartes aux joueurs
         for (int i = 0; i < nbr_joueur; i++) {
             main = new ArrayList<>();
+            mainFx = new ArrayList<>();
             bin = new ArrayList<>();
             joueurs.add(main);
             joueursPli.add(bin);
@@ -77,19 +81,13 @@ public class Start {
                 joueurs.get(i).add(cartes.get(0));
                 cartes.remove(cartes.get(0));
                 show(i);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+
             }
             method.printLine(20);
             method.clearConsole();
         }
         AI.carteRest();
-        for (int i = 0; i < joueurs.size(); i++) {
-            show(i);
-        }
+
         System.out.println();
     }
 

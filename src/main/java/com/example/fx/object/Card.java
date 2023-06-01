@@ -1,8 +1,18 @@
 package com.example.fx.object;
 
+import com.example.fx.HelloApplication;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,43 +20,61 @@ import java.util.List;
 @Setter
 public class Card {
     private int Num_card;
-    private int nbrTaureau;
-
+    private int NbrTaureau;
+    private String Img;
+    private static Parent root;
+    @FXML
+    private static Label numberLU;
+    @FXML
+    private static Label numberRU;
+    @FXML
+    private static Label numberLD;
+    @FXML
+    private static Label numberRD;
+    @FXML
+    private static Label numberC;
+    @FXML
+    private static Label numTauU;
+    @FXML
+    private static Label numTauD;
     public static List<Card> cartes = new ArrayList<>();
+    public static List<Scene> cartesFx = new ArrayList<>();
     public static List<Card> AllcarteV = new ArrayList<>();
     public static List<Card> Allcarte = new ArrayList<>();
 
-    public Card(int n, int num) {
+    public Card(int n, int num,String img) {
         Num_card = n;
-        nbrTaureau = num;
+        NbrTaureau = num;
+        Img = img;
     }
 
     public static int taureau(int Num_card, int i) {
-        if (Num_card % 10 == 5) {
-            cartes.get(i - 1).setNbrTaureau(cartes.get(i - 1).getNbrTaureau() + 2);
+        if (Num_card % 10==5){
+            cartes.get(i-1).NbrTaureau+=2;
         }
-        if (Num_card % 10 == 0) {
-            cartes.get(i - 1).setNbrTaureau(cartes.get(i - 1).getNbrTaureau() + 3);
+        if (Num_card % 10==0){
+            cartes.get(i-1).NbrTaureau+=3;
         }
-        if (Num_card % 11 == 0) {
-            cartes.get(i - 1).setNbrTaureau(cartes.get(i - 1).getNbrTaureau() + 5);
+        if (Num_card % 11==0){
+            cartes.get(i-1).NbrTaureau+=5;
+        } if (Num_card % 10!=5&&Num_card % 10!=0&&Num_card % 11!=0){
+            cartes.get(i-1).NbrTaureau+=1;
         }
-        if (Num_card % 10 != 5 && Num_card % 10 != 0 && Num_card % 11 != 0) {
-            cartes.get(i - 1).setNbrTaureau(cartes.get(i - 1).getNbrTaureau() + 1);
-        }
-        return cartes.get(i - 1).getNbrTaureau();
+        return cartes.get(i-1).NbrTaureau;
     }
 
-    public static List<Card> cart() {
+    public static List<Card> cart(ActionEvent event, Stage primaryStage) throws IOException {
         // Initialiser les cartes avec les valeurs de 1 à 104
         for (int i = 1; i <= 104; i++) {
-            Card card = new Card(0, 0);
+            Card card = new Card(i,0,i + ".png");
             cartes.add(card);
             Allcarte.add(card);
-            cartes.get(i - 1).setNum_card(i);
-            Allcarte.get(i - 1).setNum_card(i);
-            taureau(cartes.get(i - 1).getNum_card(), i);
-            taureau(Allcarte.get(i - 1).getNum_card(), i);
+            taureau(cartes.get(i-1).Num_card,i);
+            taureau(Allcarte.get(i-1).Num_card,i);
+
+            cartes.get(i - 1).setNbrTaureau(cartes.get(i - 1).getNbrTaureau() / 2);
+
+            System.out.println("numcard"+ cartes.get(i-1).getNum_card() + "   nbrtaureau"  + cartes.get(i-1).getNbrTaureau());
         }
 
         return cartes;

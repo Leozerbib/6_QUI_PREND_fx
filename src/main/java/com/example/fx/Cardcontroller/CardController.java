@@ -1,58 +1,77 @@
 package com.example.fx.Cardcontroller;
 
-import com.example.fx.object.Card;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import com.example.fx.joueurs.joueurs;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import com.example.fx.joueurs.joueurs.*;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Collections;
 
-public class CardController implements Initializable {
+import static com.example.fx.joueurs.joueurs.main;
 
-    @FXML
-    private AnchorPane cardPane;
+public class CardController {
 
-    @FXML
-    private StackPane numberPane;
+    private static final int NUM_CARTES = 5; // Nombre de cartes dans la main
 
-    @FXML
-    private Label numberLabel;
+    public static void start(int j) {
 
-    @FXML
-    private Label taureauLabel;
-
-    private Card card;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Initialisation du contrôleur
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-        updateCardView();
-    }
-
-    private void updateCardView() {
-        numberLabel.setText(String.valueOf(card.getNum_card()));
-        taureauLabel.setText(String.valueOf(card.getNbrTaureau()));
-        setColorBasedOnTaureau();
-    }
-
-    private void setColorBasedOnTaureau() {
-        int taureau = card.getNbrTaureau();
-        if (taureau < 2) {
-            cardPane.setStyle("-fx-background-color: green;");
-        } else if (taureau < 4) {
-            cardPane.setStyle("-fx-background-color: yellow;");
-        } else if (taureau < 6) {
-            cardPane.setStyle("-fx-background-color: orange;");
-        } else {
-            cardPane.setStyle("-fx-background-color: red;");
+        // Création de la main du joueur
+        HBox mainJoueur = new HBox(10);
+        mainJoueur.setStyle("-fx-background-color: White");
+        mainJoueur.setPadding(new Insets(10));
+        for (int i =0 ;i<joueurs.joueurs.get(j).size();i++){
+            ajouterCarteDansMain(mainJoueur,joueurs.joueurs.get(j).get(i).getNum_card(),j,i);
         }
+        // Création de la scène principale
+        Parent root = mainJoueur;
+        joueurs.mainFx.add(root);
     }
+
+    // Fonction pour ajouter une carte à la main du joueur
+    private static void ajouterCarteDansMain(HBox mainJoueur, int valeur, int j, int i) {
+        Rectangle carte = new Rectangle(100,120,Color.WHITE);
+        carte.setArcWidth(10);
+        carte.setArcHeight(10);
+        carte.setStrokeWidth(4);
+        if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 2) {
+            carte.setStroke(Color.BLACK);
+        } else if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 4) {
+            carte.setStroke(Color.YELLOW);
+        } else if (joueurs.joueurs.get(j).get(i).getNbrTaureau() < 6) {
+            carte.setStroke(Color.ORANGE);
+        } else {
+            carte.setStroke(Color.RED);
+        }
+        Label label = new Label(String.valueOf(valeur) + "\n\n");
+        label.setStyle("-fx-font-size: 40px;");
+        Label label2 = new Label("Taur : " + String.valueOf(joueurs.joueurs.get(j).get(i).getNbrTaureau()));
+
+        label.setStyle("-fx-font-size: 20px;");
+
+        VBox carteContainer = new VBox();
+        carteContainer.setAlignment(Pos.CENTER);
+        StackPane card = new StackPane();
+        card.setAlignment(Pos.CENTER);
+        carteContainer.getChildren().addAll(label,label2);
+        card.getChildren().addAll(carte,carteContainer);
+
+
+        mainJoueur.getChildren().add(card);
+    }
+
+
 }
