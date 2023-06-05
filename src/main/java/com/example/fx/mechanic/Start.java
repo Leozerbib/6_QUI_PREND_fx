@@ -1,14 +1,9 @@
 package com.example.fx.mechanic;
 
 import com.example.fx.AI.AI;
-import com.example.fx.HelloApplication;
 import com.example.fx.method;
-import com.example.fx.object.Card;
 
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -16,13 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import static com.example.fx.joueurs.joueurs.*;
 import static com.example.fx.mechanic.Method.*;
-import static com.example.fx.mechanic.turn.game;
-import static com.example.fx.object.Card.carte;
+import static com.example.fx.Card.carte;
 
 
 public class Start {
@@ -33,7 +26,7 @@ public class Start {
         this.primaryStage = primaryStage;
     }
 
-    public static void regle() {
+    public void regle() {
         method.printTitle("Regle du jeu :");
         String regles =
                 "Nombre de joueurs : 2 à 10 joueurs\n" +
@@ -80,41 +73,27 @@ public class Start {
             method.printLine(20);
             for (int i = 0; i <= joueurs.size() - 1; i++) {
                 joueurs.get(i).add(carte.get(0));
+
                 carte.remove(carte.get(0));
-                show(i);
+                Method.show(i);
 
             }
             method.printLine(20);
             method.clearConsole();
         }
+
+
         AI.carteRest();
 
         System.out.println();
     }
+    public void logi(){
 
-    public static void GameLogic() {
-        init();
-        while (joueurs.get(joueurs.size() - 1).size() != 0) {
-            game();
-        }
-        List<Integer> scores = new ArrayList<>();
-        for (int i = 0; i < joueurs.size(); i++) {
-            int point = 0;
-            for (int j = 0; j < joueursPli.get(i).size(); j++) {
-                point += joueursPli.get(i).get(j).getNbrTaureau();
-            }
-            scores.add(point);
-            System.out.println("Nombre de taureaux pour le joueur " + i + " : " + point);
-        }
-        method.enterContinue();
-        method.clearConsole();
-        method.printLine(40);
-        afficherElementPlusPetit(scores);
-        afficherElementPlusGrand(scores);
-        method.printLine(40);
     }
 
-    private static void showAlert(String message) {
+
+
+    private void showAlert(String message) {
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.initOwner(primaryStage);

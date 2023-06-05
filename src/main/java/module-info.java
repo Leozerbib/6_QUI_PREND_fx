@@ -7,4 +7,6 @@ module com.example.fx {
     opens com.example.fx to javafx.fxml;
     exports com.example.fx;
     opens com.example.fx.gameController to javafx.fxml;
+    exports com.example.fx.mechanic;
+    opens com.example.fx.mechanic to javafx.fxml;
 }

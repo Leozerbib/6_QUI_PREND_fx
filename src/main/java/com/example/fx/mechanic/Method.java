@@ -1,23 +1,29 @@
 package com.example.fx.mechanic;
 
 import com.example.fx.AI.AI;
+import com.example.fx.HelloController;
 import com.example.fx.method;
-import com.example.fx.object.Card;
+import com.example.fx.Card;
 
 
 import java.util.List;
 import java.util.Scanner;
 
 import static com.example.fx.joueurs.joueurs.joueurs;
-import static com.example.fx.object.Card.*;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import lombok.*;
 @Getter@Setter
 
 
 public class Method {
+    @FXML
+    private static GridPane plateau;
     static Scanner sc = new Scanner(System.in);
-    public static Card Card0;
+    private static StackPane oui;
+    public static Card Card0=new Card(0,0,oui);
     public static int nbr_joueur;
     public static Card[][] rangees ;
     public static void afficherElementPlusPetit(List<Integer> liste) {
@@ -51,7 +57,6 @@ public class Method {
     public static void Initplateau() {
         rangees = new Card[6][4];
         AI.rangeesV = new Card[6][4];
-
         for (int i = 0; i <= rangees.length-1; i++) {
             for (int j = 0; j <= rangees[i].length-1; j++) {
                 rangees[i][j] = Card0;
@@ -60,13 +65,6 @@ public class Method {
     }
     public static void plateau(){
         String plateau="";
-
-
-
-
-
-
-
         method.clearConsole();
         method.printLine(50);
         System.out.println("Pile de carte :");
@@ -102,16 +100,9 @@ public class Method {
         }
         System.out.println(plateau);
         method.printLine(50);
+
     }
-    public static void init(){
-        Initplateau();
-        for (int i =0;i<4;i++){
-            rangees[0][i]=carte.get(0);
-            Allcarte.remove(carte.get(0));
-            carte.remove(carte.get(0));
-        }
-        plateau();
-    }
+
 
 
 }

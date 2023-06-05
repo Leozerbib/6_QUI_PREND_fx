@@ -3,14 +3,14 @@ package com.example.fx.AI;
 import lombok.Getter;
 import lombok.Setter;
 import com.example.fx.joueurs.joueurs;
-import com.example.fx.object.Card;
+import com.example.fx.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import static com.example.fx.mechanic.Method.*;
-import static com.example.fx.object.Card.Allcarte;
+import static com.example.fx.Card.Allcarte;
 
 @Getter @Setter
 public class AI {
@@ -94,7 +94,7 @@ public class AI {
         }
         return lastcol;
     }
-    public static boolean verifV(Card Cardplay,int choix){
+    public static boolean verifV(Card Cardplay, int choix){
         for (int k = 0; k < 4; k++) {
             int indexLastcol=lastcolV(k);
             if (Cardplay.getNum_card() > rangeesV[indexLastcol][k].getNum_card()) {
@@ -103,7 +103,7 @@ public class AI {
         }
         return false;
     }
-    static void turnV(int i,Card cardPlay){
+    public static void turnV(int i, Card cardPlay){
         int indexRangee = 0;
         int lastcol;
         int indexLastcol=lastcolV(0);
