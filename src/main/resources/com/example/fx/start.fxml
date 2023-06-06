@@ -5,19 +5,21 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.HelloController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.HelloController">
    <center>
-      <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="97.0" prefWidth="599.0" text="6 Qui Prend" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="161.0" prefWidth="599.0" text="6 Qui Prend" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" BorderPane.alignment="CENTER">
          <font>
-            <Font name="Haettenschweiler" size="96.0" />
+            <Font name="HoloLens MDL2 Assets" size="96.0" />
          </font>
          <effect>
-            <DropShadow height="6.35" offsetX="1.0" radius="4.137499999999999" spread="1.0" width="12.2">
+            <DropShadow height="15.42" offsetX="1.0" radius="6.404999999999999" spread="0.84" width="12.2">
                <color>
-                  <Color red="0.35624101758003235" green="0.029999999329447746" blue="1.0" />
+                  <Color red="1.0" green="0.029999999329447746" blue="0.029999999329447746" />
                </color>
             </DropShadow>
          </effect>
@@ -26,17 +28,34 @@
    <bottom>
       <HBox alignment="TOP_CENTER" prefHeight="211.0" prefWidth="1080.0" spacing="150.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchSceneStart" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: blue; -fx-border-width: 2; -fx-border-style: solid; -fx-border-radius: 25; -fx-background-color: white; -fx-background-radius: 25; -fx-background-insets: 1;" text="start game" textFill="#5e00ff">
+            <Button mnemonicParsing="false" onAction="#switchSceneStart" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: red; -fx-border-width: 2; -fx-border-style: solid; -fx-border-radius: 25; -fx-background-color: white; -fx-background-radius: 25; -fx-background-insets: 1;" text="start game" textFill="RED">
                <font>
                   <Font name="Inter Semi Bold" size="19.0" />
                </font>
+               <effect>
+                  <DropShadow height="42.06" radius="21.697499999999998" spread="0.12" width="46.73">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#switchScene" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: blue; -fx-border-width: 2; -fx-border-style: solid; -fx-border-radius: 25; -fx-background-color: white; -fx-background-radius: 25; -fx-background-insets: 1;" text="regle" textFill="#5e00ff">
+            <Button mnemonicParsing="false" onAction="#switchScene" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: red; -fx-border-width: 2; -fx-border-style: solid; -fx-border-radius: 25; -fx-background-color: white; -fx-background-radius: 25; -fx-background-insets: 1;" text="regle" textFill="RED">
                <font>
                   <Font name="Inter Semi Bold" size="19.0" />
                </font>
+               <effect>
+                  <DropShadow height="42.06" radius="21.697499999999998" spread="0.12" width="46.73">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </Button>
          </children>
       </HBox>
    </bottom>
+   <top>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

@@ -11,16 +11,16 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx.HelloController">
    <children>
-      <VBox accessibleRole="BUTTON" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1080.0" spacing="10.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox accessibleRole="BUTTON" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="1080.0" spacing="10.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" prefHeight="173.0" prefWidth="494.0" text="Regle" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Fira Code Retina" size="34.0" />
                </font>
                <effect>
-                  <DropShadow height="15.13" radius="4.87" spread="1.0" width="6.35">
+                  <DropShadow blurType="GAUSSIAN" height="0.0" radius="63.25" spread="0.84" width="255.0">
                      <color>
-                        <Color red="0.16594244539737701" green="0.019999999552965164" blue="1.0" />
+                        <Color red="1.0" green="0.019999999552965164" blue="0.019999999552965164" />
                      </color>
                   </DropShadow>
                </effect>
@@ -29,10 +29,17 @@
                <font>
                   <Font size="13.0" />
                </font></Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sceneback" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: white; -fx-border-color: blue; -fx-border-width: 2; -fx-background-insets: 1; -fx-background-radius: 15; -fx-border-radius: 15;" text="Back" textAlignment="CENTER" textFill="#4901ff">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sceneback" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 2; -fx-background-insets: 1; -fx-background-radius: 15; -fx-border-radius: 15;" text="Back" textAlignment="CENTER" textFill="#ff0303">
                <font>
                   <Font name="Fira Code Medium" size="19.0" />
-               </font></Button>
+               </font>
+               <effect>
+                  <DropShadow height="63.11" radius="32.81" spread="0.05" width="70.13">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
          </children>
          <opaqueInsets>
             <Insets top="100.0" />

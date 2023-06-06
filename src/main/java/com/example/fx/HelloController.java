@@ -2,10 +2,7 @@ package com.example.fx;
 
 import com.example.fx.AI.AI;
 import com.example.fx.joueurs.joueurs;
-import com.example.fx.mechanic.CardController;
-import com.example.fx.mechanic.Method;
-import com.example.fx.mechanic.Start;
-import com.example.fx.mechanic.turn;
+import com.example.fx.mechanic.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,7 +34,10 @@ import static com.example.fx.joueurs.joueurs.mainFx;
 import static com.example.fx.mechanic.Method.*;
 import static com.example.fx.Card.Allcarte;
 import static com.example.fx.Card.carte;
+import static com.example.fx.mechanic.Plateaufx.e;
+import static com.example.fx.mechanic.Plateaufx.plateaufxLabel;
 import static com.example.fx.mechanic.turn.*;
+
 
 
 public class HelloController implements Initializable {
@@ -51,10 +51,12 @@ public class HelloController implements Initializable {
     private CheckBox ia;
     @FXML
     private Button start;
+    @FXML
+    private Button rammasser;
     private int ind;
     private int ind2;
     private StackPane Cardplay;
-    private int e = 0;
+    private GridPane PLAT;
     @FXML
     private HBox main;
     @FXML
@@ -64,6 +66,8 @@ public class HelloController implements Initializable {
     private Stage primaryStage;
     private Scene scene;
     private Parent root;
+
+
     public void switchScene(ActionEvent event) throws IOException{
         primaryStage =(Stage)((Node)event.getSource()).getScene().getWindow();
         switchSceneall("regle.fxml");
@@ -75,6 +79,22 @@ public class HelloController implements Initializable {
     public void switchSceneStart(ActionEvent event) throws IOException{
         primaryStage =(Stage)((Node)event.getSource()).getScene().getWindow();
         switchSceneall("joueur.fxml");
+    }
+    public  int ram1(ActionEvent event){
+        int a = 0;
+        return a;
+    }
+    public  int ram2(ActionEvent event){
+        int a = 1;
+        return a;
+    }
+    public  int ram3(ActionEvent event){
+        int a = 2;
+        return a;
+    }
+    public  int ram4(ActionEvent event){
+        int a = 3;
+        return a;
     }
     public void valider(ActionEvent event) throws IOException{
         int text = 0;
@@ -120,13 +140,13 @@ public class HelloController implements Initializable {
         carte.setArcHeight(10);
         carte.setStrokeWidth(4);
         if (j< 2) {
-            carte.setStroke(Color.BLACK);
+            carte.setStroke(Color.RED);
         } else if (j< 4) {
             carte.setStroke(Color.YELLOW);
         } else if (j < 6) {
             carte.setStroke(Color.ORANGE);
         } else {
-            carte.setStroke(Color.RED);
+            carte.setStroke(Color.PURPLE);
         }
         Label label = new Label(String.valueOf(i) + "\n\n");
         label.setStyle("-fx-font-size: 40px;");
@@ -151,6 +171,8 @@ public class HelloController implements Initializable {
 
                 for (int j= 0 ; j<joueurs.joueurs.get(i).size();j++) {
                     joueurs.joueurs.get(i).get(j).getFx().setId(String.valueOf(j));
+
+
                 }
             };
         });
@@ -206,9 +228,12 @@ public class HelloController implements Initializable {
         System.out.println(joueurs.mainFx.size());
     }}
     public void Toplateau(int i,int j,StackPane Card){
-        System.out.println("je suis ici");
 
         plat.add(Card,j,i,1,1);
+        Plateaufx platfx = new Plateaufx(i,j,Card);
+        if (!plateaufxLabel.contains(platfx)){
+            plateaufxLabel.add(platfx);
+    }
 
     }
     public void car(int ply){
@@ -217,11 +242,24 @@ public class HelloController implements Initializable {
         FlowPane cardpane;
     }
     public void Startt(ActionEvent event) throws IOException{
-        init();
-        cardpane.getChildren().clear();
-        cardpane.getChildren().addAll(joueurs.mainFx.get(0));
+        if(launch !=1){
+            System.out.println("je suis ici" + launch);
+            init();
+            cardpane.getChildren().clear();
+            cardpane.getChildren().addAll(joueurs.mainFx.get(0));
+
+        }
+        else {
+            cardpane.getChildren().clear();
+            cardpane.getChildren().addAll(joueurs.mainFx.get(e));
+            for (int r=0;r<plateaufxLabel.size();r++){
+            Toplateau(plateaufxLabel.get(r).getIndexcol(),plateaufxLabel.get(r).indexlin,plateaufxLabel.get(r).getCardplay());
+            }
+            Toplateau(ind,ind2,Cardplay);
+        }
         start.setDisable(true);
         start.setVisible(false);
+        Method.launch=1;
     }
     public void car1(ActionEvent event) throws IOException{
         cardpane.getChildren().clear();
@@ -250,17 +288,17 @@ public class HelloController implements Initializable {
         System.out.println(e);
 
         game(choix,e);
-
-        List<Integer> scores = new ArrayList<>();
-        for (int i = 0; i < com.example.fx.joueurs.joueurs.joueurs.size(); i++) {
-            int point = 0;
-            for (int j = 0; j < joueursPli.get(i).size(); j++) {
-                point += joueursPli.get(i).get(j).getNbrTaureau();
+        if(joueurs.joueurs.get(joueurs.joueurs.size()-1).size()==0) {
+            List<Integer> scores = new ArrayList<>();
+            for (int i = 0; i < com.example.fx.joueurs.joueurs.joueurs.size(); i++) {
+                int point = 0;
+                for (int j = 0; j < joueursPli.get(i).size(); j++) {
+                    point += joueursPli.get(i).get(j).getNbrTaureau();
+                }
+                scores.add(point);
+                System.out.println("Nombre de taureaux pour le joueur " + i + " : " + point);
             }
-            scores.add(point);
-            System.out.println("Nombre de taureaux pour le joueur " + i + " : " + point);
         }
-
     }
 
     public void game(int choi, int i){
@@ -273,8 +311,12 @@ public class HelloController implements Initializable {
                 turn(i,choi);
             }
             else{
-                System.out.print("Joueur " + (i+1) + ", choisissez une colonne : ");
-                choix2 = method.scInt("->",4)-1;
+                try {
+                    switchSceneall("jeu.fxml");
+                    System.out.println("yoooooo");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 rammasser(i,choix2, joueurs.joueurs.get(i).get(choi));
                 Allcarte.remove(joueurs.joueurs.get(i).get(choi));
                 joueurs.joueurs.get(i).remove(joueurs.joueurs.get(i).get(choi));
@@ -342,11 +384,18 @@ public class HelloController implements Initializable {
             e+=1;
         }
         System.out.println(e);
-        car(e);
+        try {
+            switchSceneall("jeu.fxml");
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        Plateaufx plateaufx = new Plateaufx(ind2,ind,Cardplay);
+        if (!plateaufxLabel.contains(plateaufx))
+        plateaufxLabel.add(plateaufx);
     }
     public void Toplat(ActionEvent event){
             Toplateau(ind,ind2,Cardplay);
-            car(e);
+
     }
 
 

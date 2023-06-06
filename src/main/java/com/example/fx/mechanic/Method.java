@@ -19,6 +19,7 @@ import lombok.*;
 
 
 public class Method {
+    public static int launch;
     @FXML
     private static GridPane plateau;
     static Scanner sc = new Scanner(System.in);

@@ -32,7 +32,7 @@ public class CardController {
 
         // Création de la main du joueur    
         HBox mainJoueur = new HBox(10);
-        mainJoueur.setStyle("-fx-background-color: White");
+        mainJoueur.setStyle("-fx-background-color: black");
         mainJoueur.setPadding(new Insets(10));
         mainJoueur.setId(String.valueOf(i));
         for (int j= 0 ; j<joueurs.joueurs.get(i).size();j++) {
